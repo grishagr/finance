@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Quote
+{% endblock %}
+
+{% block main %}
+    <form action="/quote" method="post">
+        <div class="form-group">
+            <input autocomplete="off" style="background-color:lightgray; color:black; border:2px solid cyan" autofocus class="form-control" id="quote" name="quote" placeholder="Symbol" type="text">
+        </div>
+        <button class="btn btn-dark" id="submit" type="submit" disabled>Quote</button>
+    </form>
+    <script>
+        document.querySelector("#quote").onkeydown = function(){
+            if(document.querySelector("#quote").value == ""){
+                document.querySelector("#submit").disabled = true;
+            }
+            else{
+                document.querySelector("#submit").disabled = false;
+            }
+        };
+
+        document.querySelector("#quote").onkeyup = function(){
+            if(document.querySelector("#quote").value == ""){
+                document.querySelector("#submit").disabled = true;
+            }
+            else{
+                document.querySelector("#submit").disabled = false;
+            }
+        };
+
+        document.querySelector("#quote").onchange = function(){
+            if(document.querySelector("#quote").value == ""){
+                document.querySelector("#submit").disabled = true;
+            }
+            else{
+                document.querySelector("#submit").disabled = false;
+            }
+        };
+    </script>
+{% endblock %}

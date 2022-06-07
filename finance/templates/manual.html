@@ -1,0 +1,130 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Manual
+{% endblock %}
+
+
+{% block main %}
+    <form action="/manual" method="post">
+        <div class="form-group">
+            <select style="background-color:lightgray; color:black; border:2px solid cyan;" class="form-control" id="method" name="method">
+                <option style="background-color:lightgray; color:black" value="Bought">Buy</option>
+                <option style="background-color:lightgray; color:black" value="Sold">Sell</option></select>
+            <input style="background-color:lightgray; color:black; border:2px solid cyan;" class="form-control" placeholder="Symbol" id="buy_menu" type="text"name="symbol_bought"></select>
+            <select style="background-color:lightgray; color:black; border:2px solid cyan;" class="form-control" id="sell_menu" name="symbol_sold" hidden="false">
+                <option style="background-color:lightgray; color:black" disabled selected value="">Symbol</option>
+                    {% for symbol in blist %}
+
+                        <option style="background-color:lightgray; color:black" value="{{symbol}}">
+                        {% autoescape false %}
+                          {{ symbol | replace('"', '') }}
+                          {% endautoescape %}
+                        </option>
+
+
+                    {% endfor %}
+            </select>
+            <input autocomplete="off" class="form-control" min="0" style="background-color:lightgray; color:black; border:2px solid cyan" id="price" name="price" placeholder="Price" step="0.01" type="number">
+        </div>
+        <div class="form-group">
+            <input autocomplete="off" class="form-control" min="0" style="background-color:lightgray; color:black; border:2px solid cyan" id="shares" name="shares" placeholder="# of Shares" type="number">
+        </div>
+        <button class="btn btn-dark" type="submit" id="submit" disabled>Submit</button>
+    </form>
+    <script>
+
+    document.querySelector("#method").onchange = function() {
+        if (document.querySelector("#method").value == "Bought"){
+            document.querySelector("#buy_menu").removeAttribute("hidden");
+            document.querySelector("#sell_menu").setAttribute("hidden", "true");
+        }
+        else {
+            document.querySelector("#sell_menu").removeAttribute("hidden");
+            document.querySelector("#buy_menu").setAttribute("hidden", "true");
+        }
+    };
+
+
+
+        document.querySelector('#shares').onkeyup = function() {
+     if (document.querySelector('#shares').value === '' || document.querySelector('#shares').value < 1 || document.querySelector("#price").value < 0
+     || document.querySelector('#price').value === "")
+     {
+       document.querySelector('#submit').disabled = true;
+     }
+     else
+     {
+       document.querySelector('#submit').disabled = false;
+     }
+
+   };
+   document.querySelector('#shares').onkeydown = function() {
+     if (document.querySelector('#shares').value === '' || document.querySelector('#shares').value < 1 || document.querySelector("#price").value < 0
+     || document.querySelector('#price').value === '')
+     {
+       document.querySelector('#submit').disabled = true;
+     }
+     else
+     {
+       document.querySelector('#submit').disabled = false;
+     }
+
+   };
+
+   document.querySelector('#shares').onchange = function() {
+     if (document.querySelector('#shares').value === '' || document.querySelector('#shares').value < 1 || document.querySelector("#price").value < 0
+     || document.querySelector('#price').value === "")
+     {
+       document.querySelector('#submit').disabled = true;
+     }
+     else
+     {
+       document.querySelector('#submit').disabled = false;
+     }
+
+   };
+
+   document.querySelector('#price').onkeyup = function() {
+     if (document.querySelector('#shares').value === '' || document.querySelector('#shares').value < 1 || document.querySelector("#price").value < 0
+     || document.querySelector('#price').value === "")
+     {
+       document.querySelector('#submit').disabled = true;
+     }
+     else
+     {
+       document.querySelector('#submit').disabled = false;
+     }
+
+   };
+   document.querySelector('#price').onkeydown = function() {
+     if (document.querySelector('#shares').value === '' || document.querySelector('#shares').value < 1 || document.querySelector("#price").value < 0
+     || document.querySelector('#price').value === "")
+     {
+       document.querySelector('#submit').disabled = true;
+     }
+     else
+     {
+       document.querySelector('#submit').disabled = false;
+     }
+
+   };
+
+   document.querySelector('#price').onchange = function() {
+     if (document.querySelector('#shares').value === '' || document.querySelector('#shares').value < 1 || document.querySelector("#price").value < 0
+     || document.querySelector('#price').value === "")
+     {
+       document.querySelector('#submit').disabled = true;
+     }
+     else
+     {
+       document.querySelector('#submit').disabled = false;
+     }
+
+   };
+
+
+
+
+    </script>
+{% endblock %}

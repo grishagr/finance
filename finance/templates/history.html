@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    History
+{% endblock %}
+
+{% block main %}
+ <table class="table table-striped">
+        <thead>
+            <tr style="background-color: #1a1a1a!important; color:#66FCF1">
+                <th>Symbol</th>
+                <th>Method</th>
+                <th>Shares</th>
+                <th>Price</th>
+                <th>Total</th>
+                <th>Transacted</th>
+            </tr>
+        </thead>
+        <tbody>
+                {% for dict in historylist %}
+                    {% if dict["method"] == "Bought" or dict["method"] == "Add" %}
+                    <tr>
+                        <td>{{ dict["symbol"] }}</td>
+                        <td style="color:lime">{{ dict["method"] }}</td>
+                        <td>{{ dict["shares"] }}</td>
+                        <td>{{ dict["price"] }}</td>
+                        <td>{{ dict["value"] }}</td>
+                        <td>{{ dict["transacted"] }}</td>
+                    </tr>
+                    {% elif dict["method"] == "Sold" or dict["method"] == "Withdraw" %}
+                    <tr>
+                        <td>{{ dict["symbol"] }}</td>
+                        <td style="color:#de2121">{{ dict["method"] }}</td>
+                        <td>{{ dict["shares"] }}</td>
+                        <td>{{ dict["price"] }}</td>
+                        <td>{{ dict["value"] }}</td>
+                        <td>{{ dict["transacted"] }}</td>
+                    </tr>
+                    {% endif %}
+                {% endfor %}
+        </tbody>
+</table>
+{% endblock %}

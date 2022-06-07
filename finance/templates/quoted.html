@@ -1,0 +1,11 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Quote
+{% endblock %}
+
+{% block main %}
+    <div style="font-size: 25px">
+        <span style="color: #66FCF1; ">{{ticker}} | {{name}} </span><p><span style="color:white">Price: {{price}}</span> </p><p style="font-size:18px; color:white">Last checked: {{time}} ET</p>
+    </div>
+{% endblock %}

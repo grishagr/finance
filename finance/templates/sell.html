@@ -1,0 +1,82 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Sell
+{% endblock %}
+
+{% block main %}
+    <form action="/sell" method="post">
+        <div class="form-group">
+            <select style="background-color:lightgray; color:black; border:2px solid cyan;" class="form-control" id="menu" name="symbol">
+                <option style="background-color:lightgray; color:black" disabled selected value="">Symbol</option>
+                    {% for symbol in blist %}
+
+                        <option style="background-color:lightgray; color:black" value="{{symbol}}">
+                        {% autoescape false %}
+                          {{ symbol | replace('"', '') }}
+                          {% endautoescape %}
+                        </option>
+
+
+                    {% endfor %}
+
+        </div>
+        <div class="form-group">
+            <input autocomplete="off" class="form-control" min="0" style="background-color:lightgray; color:black; border:2px solid cyan" id="shares"name="shares" placeholder="#" type="number" disabled>
+        </div>
+        <button class="btn btn-danger" type="submit" id="submit" disabled>Sell</button>
+    </form>
+    <script>
+
+
+
+        document.querySelector('#shares').onkeyup = function() {
+     if (document.querySelector('#shares').value === '' || document.querySelector('#shares').value < 1 || document.querySelector('#menu').value ==="")
+     {
+       document.querySelector('#submit').disabled = true;
+     }
+     else
+     {
+       document.querySelector('#submit').disabled = false;
+     }
+
+   }
+   document.querySelector('#shares').onkeydown = function() {
+     if (document.querySelector('#shares').value === '' || document.querySelector('#shares').value < 1 || document.querySelector('#menu').value ==="")
+     {
+       document.querySelector('#submit').disabled = true;
+     }
+     else
+     {
+       document.querySelector('#submit').disabled = false;
+     }
+
+   }
+
+   document.querySelector('#shares').onchange = function() {
+     if (document.querySelector('#shares').value === '' || document.querySelector('#shares').value < 1 || document.querySelector('#menu').value ==="")
+     {
+       document.querySelector('#submit').disabled = true;
+     }
+     else
+     {
+       document.querySelector('#submit').disabled = false;
+     }
+
+   }
+
+    document.querySelector('#menu').onchange = function(){
+        if (document.querySelector('#menu').value ==="")
+        {
+            document.querySelector('#submit').disabled = true;
+            document.querySelector('#shares').disabled = true;
+        }
+        else
+         {
+           document.querySelector("#shares").disabled = false;
+         }
+
+    };
+
+    </script>
+{% endblock %}

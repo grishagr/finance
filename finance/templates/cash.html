@@ -1,0 +1,52 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Money Management
+{% endblock %}
+
+
+{% block main %}
+    <form action="/cash" method="post">
+        <div class="form-group">
+            <select style="background-color:lightgray; color:black; border:2px solid cyan;" class="form-control" id="method" name="method">
+                <option style="background-color:lightgray; color:black" value="Add">Add</option>
+                <option style="background-color:lightgray; color:black" value="Withdraw">Withdraw</option></select>
+
+
+
+            <input autocomplete="off" class="form-control" min="0" style="background-color:lightgray; color:black; border:2px solid cyan" id="money" name="money" placeholder="Money" step="0.01" type="number">
+        </div>
+
+        <button class="btn btn-dark" type="submit" id="submit" disabled>Submit</button>
+    </form>
+    <script>
+
+
+        document.querySelector("#money").onchange = function(){
+            if (document.querySelector("#money").value == "" || document.querySelector("#money").value < 0){
+                document.querySelector("#submit").disabled = true
+            }
+            else {
+                document.querySelector("#submit").disabled = false
+            }
+        };
+
+        document.querySelector("#money").onkeydown = function(){
+            if (document.querySelector("#money").value == "" || document.querySelector("#money").value < 0){
+                document.querySelector("#submit").disabled = true
+            }
+            else {
+                document.querySelector("#submit").disabled = false
+            }
+        };
+
+        document.querySelector("#money").onkeyup = function(){
+            if (document.querySelector("#money").value == "" || document.querySelector("#money").value < 0){
+                document.querySelector("#submit").disabled = true
+            }
+            else {
+                document.querySelector("#submit").disabled = false
+            }
+        };
+    </script>
+{% endblock %}

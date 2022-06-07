@@ -1,0 +1,66 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Portfolio
+{% endblock %}
+
+{% block main %}
+
+    <table class="table table-striped">
+        <thead>
+            <tr style="background-color: #1a1a1a!important;color:#66FCF1">
+                <th>Symbol</th>
+                <th>Name</th>
+                <th>Shares</th>
+                <th>Price</th>
+                <th>Change</th>
+                <th>%Change</th>
+                <th>Total Value</th>
+
+            </tr>
+        </thead>
+        <tfoot>
+            <tr style="font-weight: bold; color:#66FCF1">
+                <td colspan="6"></td>
+                <td>{{total}}</td>
+            </tr>
+        </tfoot>
+        <tbody>
+            {% for i in templatedict %}
+
+                {% for x in templatedict[i] %}
+                <tr>
+                    <td>{{x}}</td>
+                    <td>{{templatedict[i][x]["name"]}}</td>
+                    <td>{{templatedict[i][x]["shares"]}}</td>
+                    <td>{{templatedict[i][x]["price"]}}</td>
+                    {% if templatedict[i][x]["delta"] < 0 %}
+                    <td style="color:red">-${{templatedict[i][x]["delta"]|abs()}}</td>
+                    <td style="color:red">{{templatedict[i][x]["deltap"]}}%</td>
+                    <td style="color:red">{{templatedict[i][x]["value"]}}</td>
+                    {% elif templatedict[i][x]["delta"] > 0 %}
+                    <td style="color:lime">${{templatedict[i][x]["delta"]}}</td>
+                    <td style="color:lime">{{templatedict[i][x]["deltap"]}}%</td>
+                    <td style="color:lime">{{templatedict[i][x]["value"]}}</td>
+                    {% else %}
+                    <td>{{templatedict[i][x]["delta"]}}</td>
+                    <td>{{templatedict[i][x]["deltap"]}}%</td>
+                    <td>{{templatedict[i][x]["value"]}}</td>
+
+                    {% endif %}
+
+
+
+                </tr>
+                {% endfor %}
+
+
+            {% endfor %}
+            <tr>
+                <td style="font-weight:bold;font-style:italic; color:white">Available</td>
+                <td colspan=5></td>
+                <td style="color:white;font-style:italic;font-weight:bold">{{cash}}</td>
+            </tr>
+        </tbody>
+    </table>
+{% endblock %}

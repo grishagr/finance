@@ -1,0 +1,50 @@
+nav .navbar-brand
+{
+    /* size for brand */
+    font-size: xx-large;
+}
+
+
+
+
+main .form-control
+{
+    /* center form controls */
+    display: inline-block;
+
+    /* override Bootstrap's 100% width for form controls */
+    width: auto;
+}
+
+main
+{
+    /* scroll horizontally as needed */
+    overflow-x: auto;
+
+    /* center contents */
+    text-align: center;
+}
+
+main img
+{
+    /* constrain images on small screens */
+    max-width: 100%;
+}
+
+.bg-light {
+    background-color: #1F2833!important;
+}
+
+.border{
+    border:1px solid #1F2833!important;
+    border-bottom: 2px solid #26697d!important;
+
+}
+
+.nav-link {
+    color: #45A29E!important;
+}
+
+tr:nth-child(even) {
+  background-color: #1a1a1a!important;
+}
